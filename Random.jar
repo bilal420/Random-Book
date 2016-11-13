@@ -1,0 +1,81 @@
+import java.util.Random;
+/**
+ * Created by Muhammad Bilal on 11-Nov-16.
+ */
+public class Randomm {
+
+
+    public String getRandomWord()
+    {
+        String s = "";
+        Random r= new Random();
+        for(int i = 0; i <= r.nextInt(10); i++) {
+            s += (char)(Math.random() * 26 + 97);
+        }
+        //System.out.println(s);
+        return s;
+    }
+
+
+
+    public String getRandomPage()
+    {
+        String page = "";
+        Random r = new Random();
+        int limit = r.nextInt(10);
+        for(int i = 0 ;i<=limit; i++)
+        {
+            page+=getRandomParagraph() + "\n";
+        }
+        //System.out.println(page);
+        return page;
+    }
+    public String getRandomChapter()
+    {
+        String chapter = "";
+        Random r = new Random();
+        int limit = r.nextInt(20);
+        for(int i =0 ; i<=limit; i++)
+        {
+            chapter+=getRandomPage();
+        }
+        //System.out.println(chapter);
+        return chapter;
+    }
+    public String getRandomBook()
+    {
+        String book = "";
+        Random r = new Random();
+        int limit = r.nextInt(15);
+        int j = 1;
+        for(int i = 0; i<=limit; i++)
+        {
+            book+=  "Chapter: " + j + "\n\n" +getRandomChapter();
+            j++;
+        }
+        System.out.println(book);
+        return book;
+    }
+
+    public String getRandomParagraph()
+    {
+        Random r = new Random();
+        String para = "";
+        int lines = r.nextInt(30);
+        while(lines>0)
+        {
+            int line = r.nextInt(10);
+            for (int i = 1; i <= line; i++) {
+                para += getRandomWord() + " ";
+            }
+            boolean flag = r.nextBoolean();
+            if(flag)
+                para += ".\n";
+            else
+                para+=".";
+
+            lines--;
+        }
+        return para;
+    }
+}
